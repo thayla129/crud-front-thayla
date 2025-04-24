@@ -1,25 +1,33 @@
 'use strict'
 
-async function getContatos(){
+export async function getContatos(){
     const url = 'https://bakcend-fecaf-render.onrender.com/contatos'
     const reponse =  await fetch(url)
     const data = await reponse.json()
-    console.log(data)
     return data
 
 
 }
 
+
+export async function getContatosPorNome( ){
+    const url = `https://bakcend-fecaf-render.onrender.com/contatos?nome_like=^${nome}`
+    const reponse =  await fetch(url)
+    const data = await reponse.json()
+    return data
+
+
+}
 
 async function getContato(id){
     const url = `https://bakcend-fecaf-render.onrender.com/contato/${id}`
     const reponse =  await fetch(url)
     const data = await reponse.json()
-    console.log(data)
     return data
 
 
 }
+
 
 async function postContato(contato) {
     const url = 'https://bakcend-fecaf-render.onrender.com/contatos'
