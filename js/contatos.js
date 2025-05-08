@@ -1,77 +1,61 @@
 'use strict'
 
+
+
 export async function getContatos(){
     const url = 'https://bakcend-fecaf-render.onrender.com/contatos'
-    const reponse =  await fetch(url)
-    const data = await reponse.json()
+    const response =  await fetch(url)
+    const data = await response.json()
     return data
-
-
 }
-
-
-export async function getContatosPorNome( ){
+export async function getContatosPorNome(nome){
     const url = `https://bakcend-fecaf-render.onrender.com/contatos?nome_like=^${nome}`
-    const reponse =  await fetch(url)
-    const data = await reponse.json()
+    const response =  await fetch(url)
+    const data = await response.json()
     return data
-
-
 }
-
 async function getContato(id){
-    const url = `https://bakcend-fecaf-render.onrender.com/contato/${id}`
-    const reponse =  await fetch(url)
-    const data = await reponse.json()
+    const url = `https://bakcend-fecaf-render.onrender.com/contatos/${id}`
+    const response =  await fetch(url)
+    const data = await response.json()
+    console.log(data)
     return data
-
-
 }
 
-
-async function postContato(contato) {
+export async function postContato(contato){
     const url = 'https://bakcend-fecaf-render.onrender.com/contatos'
-    const options ={
+    const options = {
         method: 'POST',
         headers: {
-                'Content-Type': 'application/json',
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify(contato)
-    }
-
-    const reponse= await fetch(url, options)
-    return reponse.ok
-}
-
-async function putContato(id,contato) {
-    const url = `https://bakcend-fecaf-render.onrender.com/contatos/${id}`
-    const options ={
-        method: 'PUT',
-        headers: {
-                'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(contato)
-    }
-
-    const reponse= await fetch(url, options)
-    return reponse.ok
-}
-
-async function deleteContato(id) {
-    const url = `https://bakcend-fecaf-render.onrender.com/contatos/${id}`
-    const options = {
-        method: 'DELETE'
     }
     const response = await fetch(url, options)
     return response.ok
 }
 
-const novoContato ={
-    "nome": "Amorim",
-    "celular": "11999999999",
-    "foto": "amorim.png",
-    "email": "amorim@gmail.com",
-    "endereco": "Av. São Joaquim, 234",
-    "cidade": "Las Vegas"
-    
+  async function putContato(id,contato){
+    const url = `https://bakcend-fecaf-render.onrender.com/contatos/${id}`
+    const options = {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(contato)
+    }
+    const response = await fetch(url, options)
+    return response.ok
+}
+
+async function deleteContato(id){
+    const url = `https://bakcend-fecaf-render.onrender.com/contatos/${id}`
+    const options = {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }
+    const response = await fetch(url, options)
+    return response.ok
 }
